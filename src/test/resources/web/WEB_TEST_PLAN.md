@@ -16,8 +16,8 @@
 
 ## Artefatos
 * Plano de teste (este documento)
-* [Casos de teste]((web.feature))
-* [Bugs e melhorias]((BUGS_E_MELHORIAS.md))
+* [Casos de teste](web.feature)
+* [Bugs e melhorias](BUGS_E_MELHORIAS.md)
 * [Relatório de testes](../reports/Cucumber Reports.html) - gerado dinameicamente após a execução dos testes utilizando o [Cucumber reports service](https://reports.cucumber.io/), porém o link leva a um exemplo.
 
 ## Recursos
