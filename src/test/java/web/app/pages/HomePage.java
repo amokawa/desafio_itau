@@ -33,7 +33,7 @@ public class HomePage extends GeneralPage {
     public HomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        if (!driver.getCurrentUrl().contains(HOMEPAGE_URL))
+        if (!driver.getCurrentUrl().equals(HOMEPAGE_URL))
             driver.get(HOMEPAGE_URL);
     }
 

@@ -49,6 +49,8 @@ public class PageHeader implements MyPage {
     }
 
     public WebElement getShoppingCart() {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(shoppingCart).perform();
         return shoppingCart;
     }
 
@@ -63,5 +65,9 @@ public class PageHeader implements MyPage {
         Actions action4 = action3.click();
         action4.perform();
         new WebDriverWait(driver, 3 * 60 * 1000).until(driver -> !text.equals(shoppingCart.getText()));
+    }
+
+    public WebElement getAccount() {
+        return driver.findElement(By.xpath("//a[@class='account']"));
     }
 }

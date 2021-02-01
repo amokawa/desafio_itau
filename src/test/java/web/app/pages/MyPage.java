@@ -11,6 +11,12 @@ import java.util.List;
 
 public interface MyPage {
 
+    /**
+     * It uses reflection to read all package scope (only) attributes the implementations of MyPage. Another approach,
+     * would be implementing this method in all MyPage page objects to return the list of web elements.
+     * @param driver is used to get to the constructor of the referred page object
+     * @return a list with all the web elements in the object referred by *this*.
+     */
     default List<WebElement> getWebElementList(WebDriver driver) {
         List<Object> objects = new ArrayList<>();
         for (Field field : this.getClass().getDeclaredFields()) {

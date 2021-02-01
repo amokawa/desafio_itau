@@ -1,9 +1,7 @@
 package web.app;
 
 import org.openqa.selenium.WebDriver;
-import web.app.pages.HomePage;
-import web.app.pages.MyPage;
-import web.app.pages.NoPageFoundException;
+import web.app.pages.*;
 
 public class MyApp {
     WebDriver driver;
@@ -13,9 +11,15 @@ public class MyApp {
     }
 
     public MyPage getPage(String page) {
-        if ("home".equalsIgnoreCase(page)) {
-            return new HomePage(driver);
+        switch (page.toLowerCase()) {
+            case "home":
+                return new HomePage(driver);
+            case "sign in":
+                return new SignInPage(driver);
+            case "order":
+                return new OrderPage(driver);
+            default:
+                throw new PageObjectNotFoundException(page);
         }
-        throw new NoPageFoundException(page);
     }
 }
