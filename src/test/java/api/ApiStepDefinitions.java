@@ -12,7 +12,13 @@ import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.junit.Assert;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -21,11 +27,13 @@ import java.util.UUID;
 public class ApiStepDefinitions {
     private Response response;
     private RandomEmployee employee;
+    private byte[] image;
 
     @Before("@api")
     public void setup() {
         response = null;
         employee = null;
+        image = null;
     }
 
     @After("@api")
@@ -37,6 +45,9 @@ public class ApiStepDefinitions {
         }
         if (employee != null) {
             scenario.attach(employee.toString(), "text/plain", employee.getName());
+        }
+        if (image != null) {
+            scenario.attach(image, "image/png", UUID.randomUUID().toString());
         }
     }
 
@@ -104,5 +115,28 @@ public class ApiStepDefinitions {
     @Then("o corpo de resposta deve conter o schema")
     public void assertSchemaValidation(String schema) {
         response.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(schema));
+    }
+
+    @Then("a imagem deve ser baixada usando o campo {string}")
+    public void assertImageIsDownloaded(String jsonPath) {
+        URL url;
+        ByteArrayOutputStream out = null;
+        try {
+            url = new URL(JsonPath.from(response.asString()).getString(jsonPath));
+            InputStream in = new BufferedInputStream(url.openStream());
+            out = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            int n;
+            while (-1!=(n=in.read(buf)))
+            {
+                out.write(buf, 0, n);
+            }
+            out.close();
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Assert.assertNotNull(out);
+        image = out.toByteArray();
     }
 }
