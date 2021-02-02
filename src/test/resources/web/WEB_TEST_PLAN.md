@@ -1,4 +1,4 @@
-# Plano de teste
+# Plano de teste de interface web
 
 ## Escopo
 * Os testes serão realizados em um site de compras na visão do usuário final, doravante 
@@ -27,10 +27,11 @@
 ## Recursos
 
 ### Ferramentas e técnicas
-* Selenium webdriver
-* [ChromeDriver 87.0.4280.88](https://chromedriver.storage.googleapis.com/index.html?path=87.0.4280.88/)
+* Selenium webdriver (3.141.59)
+* [ChromeDriver (87.0.4280.88)](https://chromedriver.storage.googleapis.com/index.html?path=87.0.4280.88/)
 * Page objects (selenium)
 * Page factory (selenium)
+* Cucumber (6.8.1)
 
 ### Ambiente
 * OS Name	Microsoft Windows 10 Enterprise

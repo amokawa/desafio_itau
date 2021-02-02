@@ -56,10 +56,13 @@ public class OrderPage extends GeneralPage {
     public void updateOrder(String description, int qty) {
         for (Map<String, WebElement> tableContent : retrieveTableContents()) {
             if (tableContent.get("Description").getText().contains(description)) {
+                String totalPriceText = totalPrice.getText();
                 if (qty == 0) throw new IllegalArgumentException("The qty must be different than 0. qty: " + qty);
                 WebElement qtyInput = tableContent.get("Qty").findElement(By.xpath(".//input[@type='text']"));
                 qtyInput.clear();
                 qtyInput.sendKeys(String.valueOf(qty) + Keys.TAB);
+                wait.until(driver1 -> !totalPriceText.equals(totalPrice.getText()));
+                actions.moveToElement(totalPrice).perform();
             }
         }
     }
