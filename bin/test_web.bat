@@ -1,4 +1,4 @@
-REM @ECHO OFF
+@ECHO OFF
 
 REM Run only WEB tests
 set CUCUMBER_FILTER_TAGS=@web
