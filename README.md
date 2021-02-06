@@ -47,7 +47,21 @@ do [Cucumber reports](https://reports.cucumber.io/). Mas uma cópia destes relat
           ![Cucumber reports output example](assets/cucumber_reports.png)
           </details>
     * `./bin/test` - caso queira executar todos os testes e ainda ter as saídas salvas em `out\out_<plataforma>.txt`.
+    * `./bin/test_perf` - executa os testes com o Apache JMeter.
 
-* Caso esteja em outro sistema operacional:
+* Caso o sistema operacional seja Linux ou OS X:
     * Adicionar a variável de ambiente: `CUCUMBER_PUBLISH_ENABLED=true`
-    * Executar: `mvn clean test`
+    * Executar: `CUCUMBER_PUBLISH_ENABLED=true mvn clean test` - para todos os testes de web, api e mobile
+    * Executar: `CUCUMBER_PUBLISH_ENABLED=true CUCUMBER_FILTER_TAGS="@api" mvn clean test` - somente os testes de API
+    * Executar: `CUCUMBER_PUBLISH_ENABLED=true CUCUMBER_FILTER_TAGS="@web" mvn clean test` - somente os testes de WEB
+    * Executar: `CUCUMBER_PUBLISH_ENABLED=true CUCUMBER_FILTER_TAGS="@mobile" mvn clean test` - somente os testes de
+      MOBILE
+    * Para os testes de performance:
+    ```bash
+    # Garanta que os arquivos .jtl e os diretórios perf_reports/web e perf_reports/api 
+    # sejam removidos antes de cada execução.
+    jmeter -n -t scripts/desafio_itau_web.jmx -l perf_reports/jmeter.jtl && \
+    jmeter -g perf_reports/jmeter.jtl -o perf_reports/web && \
+    jmeter -n -t scripts/desafio_itau_api.jmx -l perf_reports/jmeter1.jtl && \
+    jmeter -g perf_reports/jmeter1.jtl -o perf_reports/api
+    ```
