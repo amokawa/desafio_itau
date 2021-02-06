@@ -41,9 +41,14 @@ public class HomePage extends GeneralPage {
         return offeringItems;
     }
 
-    public WebElement getLayerCartContinueButton() {
+    public void clickOnContinueShopping() {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("layer_cart"))));
-        return driver.findElement(By.xpath("//div[@id='layer_cart']//span[contains(@class,'continue')]"));
+        By continueShoppingLocator = By.xpath("//div[@id='layer_cart']//span[contains(@class,'continue')]");
+        wait.until(driver1 -> {
+            WebElement element = driver.findElement(continueShoppingLocator);
+            if (element.isDisplayed()) element.click();
+            return !element.isDisplayed();
+        });
     }
 
     public void addItemToShoppingCart(WebElement element) {
