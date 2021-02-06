@@ -1,11 +1,7 @@
 @ECHO OFF
 
-REM Filter by tags
-REM set CUCUMBER_FILTER_TAGS=@api
-
-REM Set the environment properties for Cucumber reports service
-set CUCUMBER_PUBLISH_TOKEN=134b4160-dfb8-4026-a5f1-236e9428fbb6
-set CUCUMBER_PUBLISH_ENABLED=true
-
-REM Run all the tests
-mvn clean test
+RMDIR /S /Q %CD%\out\
+MKDIR %CD%\out\
+call %CD%\bin\test_api.bat > %CD%\out\out_api.txt 2>&1 & ^
+call %CD%\bin\test_mobile.bat > %CD%\out\out_mobile.txt 2>&1 & ^
+call %CD%\bin\test_web.bat > %CD%\out\out_web.txt 2>&1
