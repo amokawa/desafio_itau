@@ -13,6 +13,8 @@ Mas uma cópia deste relatório gerado pode ser encontrado em
 
 ## Pré-requisitos
 * Instalar o [ChromeDriver 87.0.4280.88](https://chromedriver.storage.googleapis.com/index.html?path=87.0.4280.88/)
+* Instalar o [Apache Jmeter](https://jmeter.apache.org/download_jmeter.cgi)
+* Instalar o [Appium](http://appium.io/docs/en/about-appium/getting-started/)
 
 ## Executando os testes
 * Caso esteja em uma máquina Windows basta executar:

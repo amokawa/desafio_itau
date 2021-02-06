@@ -16,6 +16,7 @@ import web.app.pages.*;
 import web.support.RandomCustomer;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
@@ -79,7 +80,7 @@ public class WebStepDefinitions {
                     .filter(webElement -> webElement.getText().contains(entry))
                     .findAny()
                     .ifPresent(homePage::addItemToShoppingCart);
-            homePage.getLayerCartContinueButton().click();
+            homePage.clickOnContinueShopping();
         }
     }
 
@@ -153,7 +154,7 @@ public class WebStepDefinitions {
             fail(message);
         }
         OrderPage orderPage = (OrderPage) this.appPage;
-        String actual = String.format("$%.02f", orderPage.getTotalSumOfCart());
+        String actual = String.format(Locale.ENGLISH, "$%.02f", orderPage.getTotalSumOfCart());
         assertEquals(orderPage.getTableFooterRow(footerText).getText(), actual);
     }
 
