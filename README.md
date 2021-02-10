@@ -73,5 +73,5 @@ sobre as plataformas testadas são encontrada
 em [perf_reports/PERF_REPORT_ANALYSIS.md](perf_reports/PERF_REPORT_ANALYSIS.md). Os dashboards com métricas coletadas de
 cada teste são gerados dinamicamente e criados em formato HTML.
 
-* [perf_reports/api/index.html](perf_reports/api/index.html)
-* [perf_reports/web/index.html](perf_reports/web/index.html)
+* `perf_reports/api/index.html`
+* `perf_reports/web/index.html`
