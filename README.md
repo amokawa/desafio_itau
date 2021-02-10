@@ -65,3 +65,13 @@ do [Cucumber reports](https://reports.cucumber.io/). Mas uma cópia destes relat
     jmeter -n -t scripts/desafio_itau_api.jmx -l perf_reports/jmeter1.jtl && \
     jmeter -g perf_reports/jmeter1.jtl -o perf_reports/api
     ```
+
+## Testes de performance
+
+Os testes de performance são executados em background, ou seja, sem interface gráfica. Os cenários e os comentários
+sobre as plataformas testadas são encontrada
+em [perf_reports/PERF_REPORT_ANALYSIS.md](perf_reports/PERF_REPORT_ANALYSIS.md). Os dashboards com métricas coletadas de
+cada teste são gerados dinamicamente e criados em formato HTML.
+
+* [perf_reports/api/index.html](perf_reports/api/index.html)
+* [perf_reports/web/index.html](perf_reports/web/index.html)
